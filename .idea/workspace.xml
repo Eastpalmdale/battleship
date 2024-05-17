@@ -4,15 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f5dc596-219e-4e84-ab78-ab12d7a71276" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/battleship.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/safeinput.java" afterDir="false" />
+    <list default="true" id="8f5dc596-219e-4e84-ab78-ab12d7a71276" name="Changes" comment="2:43pm 4/24/2024">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battleship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/safeinput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/safeinput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +68,14 @@
       <option name="presentableId" value="Default" />
       <updated>1713547818260</updated>
     </task>
+    <task id="LOCAL-00001" summary="2:43pm 4/24/2024">
+      <created>1713984203264</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713984203264</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,5 +88,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2:43pm 4/24/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="2:43pm 4/24/2024" />
   </component>
 </project>
