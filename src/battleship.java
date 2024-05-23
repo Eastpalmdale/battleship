@@ -291,6 +291,13 @@ public class battleship {
             loopExit = false;
             valid = false;
             gameEnd = false;
+            clearBoard();
+            clearGameBoard();
+            PlaceShips(aircraftCarrier);
+            PlaceShips(ptBoat);
+            PlaceShips(cruiser);
+            PlaceShips(battleship);
+            PlaceShips(submarine);
             do {
                 valid = playerMove();
                 if (!valid){
