@@ -35,7 +35,7 @@ public class battleship {
            } while (validCounter!=(ship+1));
            // valid = true, ship placement is allowed
            for (int i = 0; i <= ship; i++){
-               board[row+i][col] = " %";
+               board[row+i][col] = "THIS IS A SHIP";
                System.out.println("yippee ship placed");
            }
        }
@@ -73,46 +73,58 @@ public class battleship {
         int hitRegister = 0;
         int missRegister = 0;
         int strike  = 0;
-        displayGameBoard();
-        System.out.println("What is your move?");
-        // gathering move data
-        int rowMove = safeinput.getRangedInt(in, "Column move:", 1, 10);
-        String letteringColumn = safeinput.getRegExString(in, "Row move:", "[aAbBcCdDeEfFgGhHiIjJ]");
-        letteringColumn = letteringColumn.toUpperCase();
+        int rowMove = 0;
         int colMove = 0;
-        // transferring column input into numbers (in reality this is row, just too lazy to rename it all)
-        switch (letteringColumn) {
-            case "A":
-                colMove = 1;
-                break;
-            case "B":
-                colMove = 2;
-                break;
-            case "C":
-                colMove = 3;
-                break;
-            case "D":
-                colMove = 4;
-                break;
-            case "E":
-                colMove = 5;
-                break;
-            case "F":
-                colMove = 6;
-                break;
-            case "G":
-                colMove = 7;
-                break;
-            case "H":
-                colMove = 8;
-                break;
-            case "I":
-                colMove = 9;
-                break;
-            case "J":
-                colMove = 10;
-                break;
-        }
+        boolean youAreAnIdiot = false;
+        displayGameBoard();
+        do {
+            System.out.println("What is your move?");
+            // gathering move data
+            rowMove = safeinput.getRangedInt(in, "Column move:", 1, 10);
+            String letteringColumn = safeinput.getRegExString(in, "Row move:", "[aAbBcCdDeEfFgGhHiIjJ]");
+            letteringColumn = letteringColumn.toUpperCase();
+            colMove = 0;
+            // transferring column input into numbers (in reality this is row, just too lazy to rename it all)
+            switch (letteringColumn) {
+                case "A":
+                    colMove = 1;
+                    break;
+                case "B":
+                    colMove = 2;
+                    break;
+                case "C":
+                    colMove = 3;
+                    break;
+                case "D":
+                    colMove = 4;
+                    break;
+                case "E":
+                    colMove = 5;
+                    break;
+                case "F":
+                    colMove = 6;
+                    break;
+                case "G":
+                    colMove = 7;
+                    break;
+                case "H":
+                    colMove = 8;
+                    break;
+                case "I":
+                    colMove = 9;
+                    break;
+                case "J":
+                    colMove = 10;
+                    break;
+            }
+            if (board[rowMove][colMove].equals("MISS") || board[rowMove][colMove].equals("HIT")) {
+                System.out.println("You shot an old spot, shoot somewhere else");
+            }
+            else {
+                youAreAnIdiot = true;
+            }
+        } while (!youAreAnIdiot);
+            // checking if the designated location is a hit or a miss
             valid = valdiation(colMove,rowMove);
         return valid;
     }
@@ -122,19 +134,23 @@ public class battleship {
         boolean valid = false;
         boolean hit = false;
         int strike  = 0;
-        // move validation, also checking for overlap
-        if (board[rowMove][colMove].equals(" -") || board[rowMove][colMove].equals("MISS") || board[rowMove][colMove].equals("HIT")) {
-            board[rowMove][colMove] = ("MISS");
-            displayBoard[rowMove][colMove] = ("MISS");
-            System.out.println("You missed, or shot an old position");
-        }
-        else {
-            // valid move qualified'
-            System.out.println("You hit a ship!");
-            board[rowMove][colMove] = ("HIT");
-            displayBoard[rowMove][colMove] = ("HIT");
-            valid = true;
-        }
+            // move validation, also checking for overlap
+            if (board[rowMove][colMove].equals(" -")) {
+                // no variable change, returning false for a miss
+                board[rowMove][colMove] = ("MISS");
+                displayBoard[rowMove][colMove] = ("MISS");
+                System.out.println("You missed!");
+
+            }
+            else {
+                // valid move qualified
+                System.out.println("You hit a ship!");
+                board[rowMove][colMove] = ("HIT");
+                displayBoard[rowMove][colMove] = ("HIT");
+                // return variable for hit or miss
+                valid = true;
+            }
+
 
 
         // returning if the hit was valid or not valid
@@ -144,6 +160,7 @@ public class battleship {
     // methods for board/board info
     private static final int ROW = 11;
     private static final int COL = 11;
+    // board creation for boat recording and display
     private static final String[][] board = new String[ROW][COL];
     private static final String[][] displayBoard = new String[ROW][COL];
     // ship, non-displayed board clearing to restart
@@ -240,7 +257,6 @@ public class battleship {
 
             System.out.println("| ");
             for (int col = 0; col < COL; col++){
-
                 System.out.print(displayBoard[row][col]+ " | ");
 
             }
@@ -249,13 +265,14 @@ public class battleship {
 
     }
     public static void main(String[] args) {
+        // variables for loop
+        boolean gameEnd;
+        boolean loopExit;
+        boolean valid;
+        int missRegister;
+        int hitRegister;
+        int strike;
         // declaring the scanner
-        boolean gameEnd = false;
-        boolean loopExit = false;
-        boolean valid = false;
-        int missRegister = 0;
-        int hitRegister = 0;
-        int strike = 0;
         Scanner in = new Scanner(System.in);
         // prepping board
         clearBoard();
@@ -267,14 +284,13 @@ public class battleship {
         PlaceShips(submarine);
 
         do {
-            missRegister = 0;
-            strike = 0;
+            // initializing the game
+            missRegister = 4;
+            strike = 2;
             hitRegister = 0;
             loopExit = false;
             valid = false;
             gameEnd = false;
-            clearGameBoard();
-            clearBoard();
             do {
                 valid = playerMove();
                 if (!valid){
@@ -289,13 +305,18 @@ public class battleship {
                     }
                     // ending match if there are 3 strikes
                     if (strike == 3) {
+                        // 3 strikes = loss
                         loopExit = true;
                         System.out.println("You missed way too much for your own good, you lost");
                     }
                 }
                 else {
+                    // recording hits
                     hitRegister++;
+                    missRegister = 0;
+                    System.out.println("Miss count reset! Strikes still remain at "+strike);
                 }
+                // determining if hit win
                 if (hitRegister == 17){
                     loopExit = true;
                 }
